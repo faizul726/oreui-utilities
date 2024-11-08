@@ -28,8 +28,8 @@
   ],
   "subpacks": [
     {
-      "folder_name": "exportonly",
-      "name": "Enable export button only",
+      "folder_name": "exportdebug",
+      "name": "Enable both cuz why not?",
       "memory_tier": 0
     },
     {
@@ -38,8 +38,8 @@
       "memory_tier": 0
     },
     {
-      "folder_name": "exportdebug",
-      "name": "Enable both cuz why not?",
+      "folder_name": "exportonly",
+      "name": "Enable export button only",
       "memory_tier": 0
     }
   ]
