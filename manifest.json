@@ -1,0 +1,29 @@
+{
+  "format_version": 2,
+  "header": {
+    "name": "OreUI Utilities",
+    "description": "Adds export button and debug tab\n§cWORKS ONLY ON MBL2 PATCHED APP§r",
+    "uuid": "e6475b4f-7b33-026f-b383-996b06d0e943",
+    "version": [
+      1,
+      0,
+      0
+    ],
+    "min_engine_version": [
+      1,
+      21,
+      44
+    ]
+  },
+  "modules": [
+    {
+      "type": "resources",
+      "uuid": "123a1a96-2fc7-2777-3ebd-83afb3ab2c48",
+      "version": [
+        1,
+        0,
+        0
+      ]
+    }
+  ]
+}
