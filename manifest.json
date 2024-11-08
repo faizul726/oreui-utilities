@@ -2,7 +2,7 @@
   "format_version": 2,
   "header": {
     "name": "OreUI Utilities",
-    "description": "Adds export button and debug tab\n§cWORKS ONLY ON MBL2 PATCHED APP§r",
+    "description": "Adds export button and debug tab\nBy github.com/faizul726\n§cWORKS ONLY ON MBL2 PATCHED APP§r\nThanks to @stivusik for finding out.",
     "uuid": "e6475b4f-7b33-026f-b383-996b06d0e943",
     "version": [
       1,
@@ -23,6 +23,23 @@
         1,
         0,
         0
+      ],
+      "subpacks": [
+        {
+          "folder_name": "exportonly",
+          "name": "Enable export button only",
+          "memory_tier": 0
+        },
+        {
+          "folder_name": "debugonly",
+          "name": "Enable debug tab only",
+          "memory_tier": 0
+        },
+        {
+          "folder_name": "exportdebug",
+          "name": "Enable both cuz why not?",
+          "memory_tier": 0
+        }
       ]
     }
   ]
