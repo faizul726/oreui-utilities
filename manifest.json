@@ -23,24 +23,24 @@
         1,
         0,
         0
-      ],
-      "subpacks": [
-        {
-          "folder_name": "exportonly",
-          "name": "Enable export button only",
-          "memory_tier": 0
-        },
-        {
-          "folder_name": "debugonly",
-          "name": "Enable debug tab only",
-          "memory_tier": 0
-        },
-        {
-          "folder_name": "exportdebug",
-          "name": "Enable both cuz why not?",
-          "memory_tier": 0
-        }
       ]
+    }
+  ],
+  "subpacks": [
+    {
+      "folder_name": "exportonly",
+      "name": "Enable export button only",
+      "memory_tier": 0
+    },
+    {
+      "folder_name": "debugonly",
+      "name": "Enable debug tab only",
+      "memory_tier": 0
+    },
+    {
+      "folder_name": "exportdebug",
+      "name": "Enable both cuz why not?",
+      "memory_tier": 0
     }
   ]
 }
