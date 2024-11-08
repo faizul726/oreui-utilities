@@ -2,7 +2,7 @@
   "format_version": 2,
   "header": {
     "name": "OreUI Utilities",
-    "description": "Adds export button and debug tab\n§cWORKS ONLY ON MBL2 PATCHED APP§r\nThanks to @stivusik for finding out.",
+    "description": "Adds export button and debug tab\n§cOnly works with MBL2 patched Minecraft§r\nThanks to @stivusik for finding out.",
     "uuid": "e6475b4f-7b33-026f-b383-996b06d0e943",
     "version": [
       1,
