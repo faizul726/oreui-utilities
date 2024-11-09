@@ -1,0 +1,38 @@
+name: Make MCPACK
+
+# Only triggers when manually dispatched
+# Made using ChatGPT
+
+on:
+  workflow_dispatch:
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+
+    steps:
+      # Checkout the code
+      - name: Checkout source code
+        uses: actions/checkout@v3
+
+      # Create a zip file excluding the .github folder
+      - name: Create .mcpack file
+        run: |
+          zip -r oreui-utilities.zip.mcpack . -x ".github/*"
+
+      # Get the latest tag
+      - name: Get latest tag
+        id: get_tag
+        run: |
+          TAG=$(git describe --tags --abbrev=0)
+          echo "tag=$TAG" >> $GITHUB_ENV
+
+      # Create or update a release and upload the .mcpack file
+      - name: Create GitHub Release
+        uses: softprops/action-gh-release@v1
+        with:
+          files: oreui-utilities.zip.mcpack
+          tag_name: ${{ env.tag }}
+          overwrite: true
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
