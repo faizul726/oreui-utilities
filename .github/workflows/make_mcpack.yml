@@ -1,57 +1,37 @@
-name: Create Release
+name: Zip and Upload to Release
 
 on:
-  workflow_dispatch:
+  workflow_dispatch:  # This allows manual triggering
 
 jobs:
-  create-release:
+  zip_and_upload:
     runs-on: ubuntu-latest
 
     steps:
-    - name: Checkout repository
-      uses: actions/checkout@v2
+      - name: Check out repository
+        uses: actions/checkout@v3
 
-    - name: Get last commit message
-      id: get_last_commit_message
-      run: |
-        LAST_COMMIT_MESSAGE=$(git log -1 --pretty=%B)
-        echo "last_commit_message=$LAST_COMMIT_MESSAGE" >> $GITHUB_ENV
+      - name: Zip the current directory
+        run: |
+          zip -r archive.zip .
 
-    - name: Extract version number
-      id: extract_version
-      run: |
-        if [[ "${{ env.last_commit_message }}" =~ v([0-9]+\.[0-9]+\.[0-9]+) ]]; then
-          VERSION="${BASH_REMATCH[1]}"
-          echo "version=$VERSION" >> $GITHUB_ENV
-        else
-          echo "No version number found in the last commit message."
-          exit 1
-        fi
+      - name: Install GitHub CLI
+        run: |
+          sudo apt update
+          sudo apt install -y gh
 
-    - name: Zip source code
-      run: |
-        ZIP_NAME="import-export-button-unhider_v${{ env.version }}.zip.mcpack"
-        zip -r $ZIP_NAME . -x '.github/*' 'README.md'
-        echo "zip_name=$ZIP_NAME" >> $GITHUB_ENV
+      - name: Authenticate GitHub CLI
+        env:
+          GH_TOKEN: ${{ secrets.GH_TOKEN }}
+        run: |
+          echo "${GH_TOKEN}" | gh auth login --with-token
 
-    - name: Create GitHub release
-      id: create_release
-      uses: actions/create-release@v1
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      with:
-        tag_name: v${{ env.version }}
-        release_name: Release v${{ env.version }}
-        body: "Release of version v${{ env.version }}"
-        draft: false
-        prerelease: false
+      - name: Get latest release tag
+        id: get_release
+        run: |
+          LATEST_TAG=$(gh release view --json tagName -q '.tagName')
+          echo "LATEST_TAG=$LATEST_TAG" >> $GITHUB_ENV
 
-    - name: Upload release asset
-      uses: actions/upload-release-asset@v1
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      with:
-        upload_url: ${{ steps.create_release.outputs.upload_url }}
-        asset_path: ${{ env.zip_name }}
-        asset_name: ${{ env.zip_name }}
-        asset_content_type: application/zip
+      - name: Upload zip to the latest release
+        run: |
+          gh release upload "$LATEST_TAG" archive.zip --repo faizul726/oreui-utilities --clobber
