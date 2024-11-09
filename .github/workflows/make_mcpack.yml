@@ -1,58 +1,57 @@
-name: Zip and Add to Release
+name: Create Release
 
 on:
-  push:
-    tags:
-      - '*'
   workflow_dispatch:
-    inputs:
-      tag:
-        description: 'Enter the tag to release'
-        required: true
-        default: 'v1.0.0' # You can set a default if you like
 
 jobs:
-  zip-and-release:
+  create-release:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout the repository
-        uses: actions/checkout@v3
+    - name: Checkout repository
+      uses: actions/checkout@v2
 
-      - name: Set up Git user
-        run: |
-          git config --global user.name "github-actions"
-          git config --global user.email "github-actions@github.com"
+    - name: Get last commit message
+      id: get_last_commit_message
+      run: |
+        LAST_COMMIT_MESSAGE=$(git log -1 --pretty=%B)
+        echo "last_commit_message=$LAST_COMMIT_MESSAGE" >> $GITHUB_ENV
 
-      - name: Get the tag from workflow input
-        id: get_tag
-        run: |
-          # The tag will either come from the input (manual trigger) or from the git tag (auto trigger)
-          TAG=${{ github.event.inputs.tag || 'v1.0.0' }}
-          echo "Using specified tag: $TAG"
-          echo "TAG=$TAG" >> $GITHUB_ENV
+    - name: Extract version number
+      id: extract_version
+      run: |
+        if [[ "${{ env.last_commit_message }}" =~ v([0-9]+\.[0-9]+\.[0-9]+) ]]; then
+          VERSION="${BASH_REMATCH[1]}"
+          echo "version=$VERSION" >> $GITHUB_ENV
+        else
+          echo "No version number found in the last commit message."
+          exit 1
+        fi
 
-      - name: Zip the repository
-        run: |
-          zip -r $GITHUB_ENV.TAG.zip .
+    - name: Zip source code
+      run: |
+        ZIP_NAME="import-export-button-unhider_v${{ env.version }}.zip.mcpack"
+        zip -r $ZIP_NAME . -x '.github/*' 'README.md'
+        echo "zip_name=$ZIP_NAME" >> $GITHUB_ENV
 
-      - name: Create a release if it doesn't exist
-        id: create_release
-        run: |
-          # Check if a release exists for the provided tag
-          RELEASE_EXISTS=$(gh release view $TAG --json tagName --jq ".tagName" || echo "false")
-          if [ "$RELEASE_EXISTS" == "false" ]; then
-            echo "Creating release for tag: $TAG"
-            gh release create $TAG $GITHUB_ENV.TAG.zip --title "Release $TAG" --notes "Release notes for $TAG"
-          else
-            echo "Release already exists for tag: $TAG"
-          fi
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+    - name: Create GitHub release
+      id: create_release
+      uses: actions/create-release@v1
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with:
+        tag_name: v${{ env.version }}
+        release_name: Release v${{ env.version }}
+        body: "Release of version v${{ env.version }}"
+        draft: false
+        prerelease: false
 
-      - name: Upload the zip file as a release asset
-        uses: softprops/action-gh-release@v1
-        with:
-          files: $GITHUB_ENV.TAG.zip
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+    - name: Upload release asset
+      uses: actions/upload-release-asset@v1
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with:
+        upload_url: ${{ steps.create_release.outputs.upload_url }}
+        asset_path: ${{ env.zip_name }}
+        asset_name: ${{ env.zip_name }}
+        asset_content_type: application/zip
