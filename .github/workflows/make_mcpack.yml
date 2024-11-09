@@ -4,7 +4,7 @@ on:
   push:
     tags:
       - '*'
-      - workflow_dispatch
+  workflow_dispatch: # This allows manual triggering of the workflow
 
 jobs:
   zip-and-release:
