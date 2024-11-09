@@ -17,17 +17,22 @@ jobs:
         run: |
           zip -r "${GITHUB_REPOSITORY##*/}.zip.mcpack" ./*
 
-      # Step 3: Get the latest release information
-      - name: Get latest release
-        id: get_latest_release
-        uses: dawidd6/action-get-latest-release@v3
+      # Step 3: Get the latest release ID using GitHub's API
+      - name: Get latest release ID
+        id: release_id
+        run: |
+          REPO_OWNER="faizul726"
+          REPO_NAME="oreui-utilities"
+          LATEST_RELEASE=$(curl -s https://api.github.com/repos/$REPO_OWNER/$REPO_NAME/releases/latest)
+          echo "Latest release ID: $(echo $LATEST_RELEASE | jq -r .id)"
+          echo "::set-output name=release_id::$(echo $LATEST_RELEASE | jq -r .id)"
 
       # Step 4: Upload the .mcpack file to the latest release
       - name: Upload .zip.mcpack to release
         uses: actions/upload-release-asset@v1
         with:
           repo_token: ${{ secrets.GITHUB_TOKEN }}
-          release_id: ${{ steps.get_latest_release.outputs.id }}
+          release_id: ${{ steps.release_id.outputs.release_id }}
           asset_path: "${GITHUB_REPOSITORY##*/}.zip.mcpack"
           asset_name: "${GITHUB_REPOSITORY##*/}.zip.mcpack"
           asset_content_type: application/zip
