@@ -14,24 +14,28 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v3
 
-      # Step 2: Create a zip file excluding the .github folder
+      # Step 2: Create a ZIP file excluding the .github folder
       - name: Create ZIP file
         run: |
-          zip -r oreui-utilities.mcpack.zip . -x '.github/*'
+          zip -r reponame.mcpack.zip . -x '.github/*'
 
-      # Step 3: Find the latest release and upload the zip file
-      - name: Upload to latest release
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      # Step 3: Get the latest release ID
+      - name: Get Latest Release
+        id: latest_release
         run: |
-          # Get the latest release ID
-          latest_release=$(curl -s \
+          release_data=$(curl -s \
             -H "Authorization: token $GITHUB_TOKEN" \
-            "https://api.github.com/repos/${{ github.repository }}/releases/latest" | jq -r .id)
+            "https://api.github.com/repos/${{ github.repository }}/releases/latest")
+          echo "release_data=$release_data" >> $GITHUB_ENV
+          echo "::set-output name=release_id::$(echo $release_data | jq -r .id)"
 
-          # Upload the zip file to the latest release
-          curl -s -X POST \
+      # Step 4: Upload the ZIP to the latest release
+      - name: Upload to latest release
+        run: |
+          upload_url=$(echo $release_data | jq -r .upload_url | sed -e "s/{?name,label}//")
+          echo "Uploading to release $upload_url"
+          curl -X POST \
             -H "Authorization: token $GITHUB_TOKEN" \
             -H "Content-Type: application/zip" \
             --data-binary @reponame.mcpack.zip \
-            "https://uploads.github.com/repos/${{ github.repository }}/releases/$latest_release/assets?name=reponame.mcpack.zip"
+            "$upload_url?name=reponame.mcpack.zip"
