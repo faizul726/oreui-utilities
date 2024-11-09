@@ -22,8 +22,17 @@ jobs:
       - name: Get the latest tag
         id: get_tag
         run: |
-          # Get the latest tag in the repository, not necessarily the one that triggered the action
-          TAG=$(git describe --tags --abbrev=0)
+          # Fetch tags from remote to ensure we get the latest pushed tag
+          git fetch --tags
+          
+          # Get the most recent tag based on lexicographical order
+          TAG=$(git tag -l | sort -V | tail -n 1)
+          
+          # If no tags found, fallback to a default tag
+          if [ -z "$TAG" ]; then
+            TAG="v0.0.0"
+          fi
+
           echo "Using latest tag: $TAG"
           echo "TAG=$TAG" >> $GITHUB_ENV
 
