@@ -1,37 +1,37 @@
-name: Create Release
+name: Zip and Attach to Latest Release
 
 on:
-  workflow_dispatch:
+  push:
+    branches:
+      - main  # Change to your default branch if needed
 
 jobs:
-  release:
+  build-and-release:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout source code
+      # Step 1: Check out the current repository code
+      - name: Checkout code
         uses: actions/checkout@v3
-        with:
-          fetch-depth: 0
-          tags: true
 
-      # Create a zip file excluding the .github folder
-      - name: Create .mcpack file
+      # Step 2: Create a zip file excluding the .github folder
+      - name: Create ZIP file
         run: |
-          zip -r oreui-utilities.zip.mcpack . -x ".github/*"
+          zip -r oreui-utilities.mcpack.zip . -x '.github/*'
 
-      # Get the latest tag
-      - name: Get latest tag
-        id: get_tag
-        run: |
-          TAG=$(git describe --tags --abbrev=0)
-          echo "tag=$TAG" >> $GITHUB_ENV
-
-      # Create or update a release and upload the .mcpack file
-      - name: Create GitHub Release
-        uses: softprops/action-gh-release@v1
-        with:
-          files: oreui-utilities.zip.mcpack
-          tag_name: ${{ env.tag }}
-          overwrite: true
+      # Step 3: Find the latest release and upload the zip file
+      - name: Upload to latest release
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          # Get the latest release ID
+          latest_release=$(curl -s \
+            -H "Authorization: token $GITHUB_TOKEN" \
+            "https://api.github.com/repos/${{ github.repository }}/releases/latest" | jq -r .id)
+
+          # Upload the zip file to the latest release
+          curl -s -X POST \
+            -H "Authorization: token $GITHUB_TOKEN" \
+            -H "Content-Type: application/zip" \
+            --data-binary @reponame.mcpack.zip \
+            "https://uploads.github.com/repos/${{ github.repository }}/releases/$latest_release/assets?name=reponame.mcpack.zip"
