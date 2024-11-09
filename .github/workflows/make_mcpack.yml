@@ -1,59 +1,81 @@
-name: Create Release Asset
-
 on:
-  workflow_dispatch:
+  workflow_call:
     inputs:
-      tag:
-        description: 'Release tag'
+      commit_changes:
+        description: Whether the built artifacts should be uploaded to `inputs.target_path`
+        required: false
+        type: boolean
+        default: true
+      pack_name:
+        description: The name of the file
         required: true
-        default: 'v1.0.0'
-
+        type: string
+      pack_type:
+        description: What kind of package you are building
+        required: true
+        type: number
+      bp_path:
+        description: Path to the behavior pack
+        required: false
+        type: string
+        default: ./bp
+      rp_path:
+        description: Path to the resource pack
+        required: false
+        type: string
+        default: ./rp
+      target_path:
+        description: Where you would like the assets to be stored
+        required: false
+        type: string
+        default: ./assets
+      user_name:
+        description: User name to be used in commit push IF commit_changes is true
+        required: false
+        type: string
+        default: github-actions
+      user_email:
+        description: User email to be used in commit push IF commit_changes is true
+        required: false
+        type: string
+        default: github-actions@github.com
 jobs:
-  release:
+  build:
     runs-on: ubuntu-latest
-
     steps:
-    # Step 1: Checkout the repository code
-    - name: Checkout repository
-      uses: actions/checkout@v3
+      - uses: actions/checkout@v3
+      - name: Get adm-zip
+        run: npm install adm-zip --save-dev
+      - name: Package Assets
+        uses: actions/github-script@v6
+        with:
+          script: |
+            var AZ = require("adm-zip");
+            var handle = require("./build-handler.js");
+            var pType = ${{ inputs.pack_type }};
+            var builds = {};
 
-    # Step 2: Prompt for the tag (using input from workflow_dispatch)
-    - name: Get release tag
-      id: get_tag
-      run: echo "Release Tag: ${{ github.event.inputs.tag }}"
-
-    # Step 3: Create a zip of the current repository excluding .git and .github
-    - name: Zip repository excluding .git and .github
-      run: |
-        zip -r oreui-utilities.zip . -x "*.git*" -x ".github/*"
-
-    # Step 4: Check if the release already exists
-    - name: Check if tag exists and create the tag if it doesn't
-      id: check_tag
-      run: |
-        TAG=${{ github.event.inputs.tag }}
-        git fetch --tags
-        if git rev-parse "$TAG" >/dev/null 2>&1; then
-          echo "Tag $TAG already exists."
-        else
-          echo "Tag $TAG does not exist. Creating tag."
-          git tag $TAG
-          git push origin $TAG
-        fi
-
-    # Step 5: Create the release and upload the asset
-    - name: Create Release and Upload Asset
-      run: |
-        TAG=${{ github.event.inputs.tag }}
-        # Create release if it doesn't exist
-        RELEASE=$(gh release view $TAG --json name --jq '.name' || echo "none")
-        if [[ "$RELEASE" == "none" ]]; then
-          echo "Creating release $TAG"
-          gh release create "$TAG" oreui-utilities.zip --title "Release $TAG" --notes "Automated release for $TAG" --latest
-        else
-          echo "Release $TAG already exists"
-        fi
-
-    # Step 6: Logout from GitHub CLI
-    - name: Logout from GitHub CLI
-      run: gh auth logout -y
+            if (pType === 0 || pType === 1) {
+              var bp = new AZ();
+              bp.addLocalFolder("${{ inputs.bp_path }}");
+              // bp.writeZip("${{ inputs.target_path }}/${{ inputs.pack_name }}_bp.mcpack")
+              builds.bp = bp;
+            }
+            if (pType === 0 || 2) {
+              var rp = new AZ();
+              rp.addLocalFolder("${{ inputs.rp_path }}");
+              rp.writeZip("${{ inputs.target_path }}/${{ inputs.pack_name }}_rp.mcpack")
+            }
+            if (pType === 0) {
+              var add = new AZ();
+              add.addLocalFolder("${{ inputs.target_path }}")
+              add.writeZip("${{ inputs.target_path }}")
+            }
+      - name: Commit changes
+        run: |
+          git pull
+          git config user.name ${{ inputs.user_name }}
+          git config user.email ${{ inputs.user_email }}
+          git add .
+          git commit -m "generate \`${{inputs.versionString}}\` assets"
+          git push
