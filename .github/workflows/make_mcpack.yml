@@ -1,41 +1,34 @@
-name: Zip and Attach to Latest Release
+name: Zip and Add to Release
 
 on:
   push:
-    branches:
-      - main  # Change to your default branch if needed
+    tags:
+      - '*'
 
 jobs:
-  build-and-release:
+  zip-and-release:
     runs-on: ubuntu-latest
 
     steps:
-      # Step 1: Check out the current repository code
-      - name: Checkout code
+      - name: Checkout the repository
         uses: actions/checkout@v3
 
-      # Step 2: Create a ZIP file excluding the .github folder
-      - name: Create ZIP file
+      - name: Set up Git user
         run: |
-          zip -r reponame.mcpack.zip . -x '.github/*'
+          git config --global user.name "github-actions"
+          git config --global user.email "github-actions@github.com"
 
-      # Step 3: Get the latest release ID
-      - name: Get Latest Release
-        id: latest_release
-        run: |
-          release_data=$(curl -s \
-            -H "Authorization: token $GITHUB_TOKEN" \
-            "https://api.github.com/repos/${{ github.repository }}/releases/latest")
-          echo "release_data=$release_data" >> $GITHUB_ENV
-          echo "::set-output name=release_id::$(echo $release_data | jq -r .id)"
+      - name: Get the latest tag
+        id: get_tag
+        run: echo "TAG=$(git describe --tags --abbrev=0)" >> $GITHUB_ENV
 
-      # Step 4: Upload the ZIP to the latest release
-      - name: Upload to latest release
+      - name: Zip the repository
         run: |
-          upload_url=$(echo $release_data | jq -r .upload_url | sed -e "s/{?name,label}//")
-          echo "Uploading to release $upload_url"
-          curl -X POST \
-            -H "Authorization: token $GITHUB_TOKEN" \
-            -H "Content-Type: application/zip" \
-            --data-binary @reponame.mcpack.zip \
-            "$upload_url?name=reponame.mcpack.zip"
+          zip -r $GITHUB_ENV.TAG.zip .
+
+      - name: Upload the zip file as a release asset
+        uses: softprops/action-gh-release@v1
+        with:
+          files: $GITHUB_ENV.TAG.zip
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
