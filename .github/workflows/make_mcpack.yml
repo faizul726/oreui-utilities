@@ -1,38 +1,59 @@
-name: Create and Upload .mcpack Archive
+name: Create Release Asset
 
 on:
-  workflow_dispatch: # Triggered manually
+  workflow_dispatch:
+    inputs:
+      tag:
+        description: 'Release tag'
+        required: true
+        default: 'v1.0.0'
 
 jobs:
-  zip_and_upload:
+  release:
     runs-on: ubuntu-latest
 
     steps:
-      # Step 1: Checkout the current repository
-      - name: Checkout code
-        uses: actions/checkout@v3
+    # Step 1: Checkout the repository code
+    - name: Checkout repository
+      uses: actions/checkout@v3
 
-      # Step 2: Create the zip file with .mcpack extension
-      - name: Create .zip.mcpack file
-        run: |
-          zip -r "${GITHUB_REPOSITORY##*/}.zip.mcpack" ./*
+    # Step 2: Prompt for the tag (using input from workflow_dispatch)
+    - name: Get release tag
+      id: get_tag
+      run: echo "Release Tag: ${{ github.event.inputs.tag }}"
 
-      # Step 3: Get the latest release ID using GitHub's API
-      - name: Get latest release ID
-        id: release_id
-        run: |
-          REPO_OWNER="faizul726"
-          REPO_NAME="oreui-utilities"
-          LATEST_RELEASE=$(curl -s https://api.github.com/repos/$REPO_OWNER/$REPO_NAME/releases/latest)
-          echo "Latest release ID: $(echo $LATEST_RELEASE | jq -r .id)"
-          echo "::set-output name=release_id::$(echo $LATEST_RELEASE | jq -r .id)"
+    # Step 3: Create a zip of the current repository excluding .git and .github
+    - name: Zip repository excluding .git and .github
+      run: |
+        zip -r oreui-utilities.zip . -x "*.git*" -x ".github/*"
 
-      # Step 4: Upload the .mcpack file to the latest release
-      - name: Upload .zip.mcpack to release
-        uses: actions/upload-release-asset@v1
-        with:
-          repo_token: ${{ secrets.GITHUB_TOKEN }}
-          release_id: ${{ steps.release_id.outputs.release_id }}
-          asset_path: "${GITHUB_REPOSITORY##*/}.zip.mcpack"
-          asset_name: "${GITHUB_REPOSITORY##*/}.zip.mcpack"
-          asset_content_type: application/zip
+    # Step 4: Check if the release already exists
+    - name: Check if tag exists and create the tag if it doesn't
+      id: check_tag
+      run: |
+        TAG=${{ github.event.inputs.tag }}
+        git fetch --tags
+        if git rev-parse "$TAG" >/dev/null 2>&1; then
+          echo "Tag $TAG already exists."
+        else
+          echo "Tag $TAG does not exist. Creating tag."
+          git tag $TAG
+          git push origin $TAG
+        fi
+
+    # Step 5: Create the release and upload the asset
+    - name: Create Release and Upload Asset
+      run: |
+        TAG=${{ github.event.inputs.tag }}
+        # Create release if it doesn't exist
+        RELEASE=$(gh release view $TAG --json name --jq '.name' || echo "none")
+        if [[ "$RELEASE" == "none" ]]; then
+          echo "Creating release $TAG"
+          gh release create "$TAG" oreui-utilities.zip --title "Release $TAG" --notes "Automated release for $TAG" --latest
+        else
+          echo "Release $TAG already exists"
+        fi
+
+    # Step 6: Logout from GitHub CLI
+    - name: Logout from GitHub CLI
+      run: gh auth logout -y
