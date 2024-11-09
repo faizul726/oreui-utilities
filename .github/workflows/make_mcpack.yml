@@ -4,7 +4,7 @@ on:
   push:
     tags:
       - '*'
-  workflow_dispatch: # This allows manual triggering of the workflow
+  workflow_dispatch: # Allows manual triggering
 
 jobs:
   zip-and-release:
@@ -21,11 +21,29 @@ jobs:
 
       - name: Get the latest tag
         id: get_tag
-        run: echo "TAG=$(git describe --tags --abbrev=0)" >> $GITHUB_ENV
+        run: |
+          # Get the latest tag in the repository, not necessarily the one that triggered the action
+          TAG=$(git describe --tags --abbrev=0)
+          echo "Using latest tag: $TAG"
+          echo "TAG=$TAG" >> $GITHUB_ENV
 
       - name: Zip the repository
         run: |
           zip -r $GITHUB_ENV.TAG.zip .
+
+      - name: Create a release if it doesn't exist
+        id: create_release
+        run: |
+          # Check if a release exists for the latest tag
+          RELEASE_EXISTS=$(gh release view $TAG --json tagName --jq ".tagName" || echo "false")
+          if [ "$RELEASE_EXISTS" == "false" ]; then
+            echo "Creating release for tag: $TAG"
+            gh release create $TAG $GITHUB_ENV.TAG.zip --title "Release $TAG" --notes "Release notes for $TAG"
+          else
+            echo "Release already exists for tag: $TAG"
+          fi
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Upload the zip file as a release asset
         uses: softprops/action-gh-release@v1
