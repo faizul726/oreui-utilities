@@ -13,28 +13,24 @@ jobs:
 
       - name: Zip the current directory (excluding .git and .github)
         run: |
-          zip -r oreui-utilities.zip.mcpack . -x "*.git*" -x ".github/*"
+          zip -r oreui-utilities.zip.mcpack . -x ".git/*" -x ".github/*"
 
-      - name: Install GitHub CLI
-        run: |
-          sudo apt update
-          sudo apt install -y gh
-
-      - name: Authenticate GitHub CLI
-        env:
-          GITHUB_TOKEN: ${{ secrets.TOKEN }}
-        run: |
-          gh auth setup-git
-          gh auth status
-
-      - name: Get the latest release tag
+      - name: Get the latest release ID
         id: get_release
+        env:
+          PAT_TOKEN: ${{ secrets.PAT_TOKEN }}
         run: |
-          LATEST_TAG=$(gh release view --json tagName -q '.tagName')
-          echo "LATEST_TAG=$LATEST_TAG" >> $GITHUB_ENV
+          latest_release=$(curl -s -H "Authorization: token $PAT_TOKEN" \
+            https://api.github.com/repos/faizul726/oreui-utilities/releases/latest)
+          release_id=$(echo "$latest_release" | jq -r '.id')
+          echo "release_id=$release_id" >> $GITHUB_ENV
 
       - name: Upload zip to the latest release
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          PAT_TOKEN: ${{ secrets.PAT_TOKEN }}
         run: |
-          gh release upload "$LATEST_TAG" oreui-utilities.zip.mcpack --repo faizul726/oreui-utilities --clobber
+          curl -s -X POST \
+            -H "Authorization: token $PAT_TOKEN" \
+            -H "Content-Type: application/zip" \
+            --data-binary "@oreui-utilities.zip.mcpack" \
+      
