@@ -1,7 +1,7 @@
 name: Zip and Upload to Release
 
 on:
-  workflow_dispatch:  # This allows manual triggering
+  workflow_dispatch:  # Allows manual triggering
 
 jobs:
   zip_and_upload:
@@ -11,9 +11,9 @@ jobs:
       - name: Check out repository
         uses: actions/checkout@v3
 
-      - name: Zip the current directory
+      - name: Zip the current directory (excluding .git and .github)
         run: |
-          zip -r archive.zip .
+          zip -r oreui-utilities.zip.mcpack . -x "*.git*" -x ".github/*"
 
       - name: Install GitHub CLI
         run: |
@@ -22,16 +22,19 @@ jobs:
 
       - name: Authenticate GitHub CLI
         env:
-          GH_TOKEN: ${{ secrets.GH_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.TOKEN }}
         run: |
-          echo "${GH_TOKEN}" | gh auth login --with-token
+          gh auth setup-git
+          gh auth status
 
-      - name: Get latest release tag
+      - name: Get the latest release tag
         id: get_release
         run: |
           LATEST_TAG=$(gh release view --json tagName -q '.tagName')
           echo "LATEST_TAG=$LATEST_TAG" >> $GITHUB_ENV
 
       - name: Upload zip to the latest release
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          gh release upload "$LATEST_TAG" archive.zip --repo faizul726/oreui-utilities --clobber
+          gh release upload "$LATEST_TAG" oreui-utilities.zip.mcpack --repo faizul726/oreui-utilities --clobber
