@@ -15,22 +15,41 @@ jobs:
         run: |
           zip -r oreui-utilities.zip.mcpack . -x ".git/*" -x ".github/*"
 
+      - name: Ensure jq is installed
+        run: |
+          sudo apt update
+          sudo apt install -y jq
+
       - name: Get the latest release ID
         id: get_release
         env:
           PAT_TOKEN: ${{ secrets.PAT_TOKEN }}
         run: |
+          # Fetch the latest release data
           latest_release=$(curl -s -H "Authorization: token $PAT_TOKEN" \
             https://api.github.com/repos/faizul726/oreui-utilities/releases/latest)
+
+          # Log the response for debugging
+          echo "Latest release response: $latest_release"
+
+          # Extract the release ID
           release_id=$(echo "$latest_release" | jq -r '.id')
+          
+          # Check if release_id is null or empty
+          if [ -z "$release_id" ] || [ "$release_id" == "null" ]; then
+            echo "Error: Could not retrieve release ID"
+            exit 1
+          fi
+
           echo "release_id=$release_id" >> $GITHUB_ENV
 
       - name: Upload zip to the latest release
         env:
           PAT_TOKEN: ${{ secrets.PAT_TOKEN }}
+          release_id: ${{ env.release_id }}
         run: |
           curl -s -X POST \
             -H "Authorization: token $PAT_TOKEN" \
             -H "Content-Type: application/zip" \
             --data-binary "@oreui-utilities.zip.mcpack" \
-      
+            "https://uploads.github.com/repos/faizul726/oreui-utilities/releases/$release_id/assets?name=oreui-utilities.zip.mcpack"
