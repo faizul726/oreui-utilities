@@ -1,55 +1,33 @@
-name: Zip and Upload to Release
+name: Create and Upload .mcpack Archive
 
 on:
-  workflow_dispatch:  # Allows manual triggering
+  workflow_dispatch: # Triggered manually
 
 jobs:
   zip_and_upload:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Check out repository
+      # Step 1: Checkout the current repository
+      - name: Checkout code
         uses: actions/checkout@v3
 
-      - name: Zip the current directory (excluding .git and .github)
+      # Step 2: Create the zip file with .mcpack extension
+      - name: Create .zip.mcpack file
         run: |
-          zip -r oreui-utilities.zip.mcpack . -x ".git/*" -x ".github/*"
+          zip -r "${GITHUB_REPOSITORY##*/}.zip.mcpack" ./*
 
-      - name: Ensure jq is installed
-        run: |
-          sudo apt update
-          sudo apt install -y jq
+      # Step 3: Get the latest release information
+      - name: Get latest release
+        id: get_latest_release
+        uses: dawidd6/action-get-latest-release@v3
 
-      - name: Get the latest release ID
-        id: get_release
-        env:
-          PAT_TOKEN: ${{ secrets.PAT_TOKEN }}
-        run: |
-          # Fetch the latest release data
-          latest_release=$(curl -s -H "Authorization: token $PAT_TOKEN" \
-            https://api.github.com/repos/faizul726/oreui-utilities/releases/latest)
-
-          # Log the response for debugging
-          echo "Latest release response: $latest_release"
-
-          # Extract the release ID
-          release_id=$(echo "$latest_release" | jq -r '.id')
-          
-          # Check if release_id is null or empty
-          if [ -z "$release_id" ] || [ "$release_id" == "null" ]; then
-            echo "Error: Could not retrieve release ID"
-            exit 1
-          fi
-
-          echo "release_id=$release_id" >> $GITHUB_ENV
-
-      - name: Upload zip to the latest release
-        env:
-          PAT_TOKEN: ${{ secrets.PAT_TOKEN }}
-          release_id: ${{ env.release_id }}
-        run: |
-          curl -s -X POST \
-            -H "Authorization: token $PAT_TOKEN" \
-            -H "Content-Type: application/zip" \
-            --data-binary "@oreui-utilities.zip.mcpack" \
-            "https://uploads.github.com/repos/faizul726/oreui-utilities/releases/$release_id/assets?name=oreui-utilities.zip.mcpack"
+      # Step 4: Upload the .mcpack file to the latest release
+      - name: Upload .zip.mcpack to release
+        uses: actions/upload-release-asset@v1
+        with:
+          repo_token: ${{ secrets.GITHUB_TOKEN }}
+          release_id: ${{ steps.get_latest_release.outputs.id }}
+          asset_path: "${GITHUB_REPOSITORY##*/}.zip.mcpack"
+          asset_name: "${GITHUB_REPOSITORY##*/}.zip.mcpack"
+          asset_content_type: application/zip
