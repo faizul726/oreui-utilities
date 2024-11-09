@@ -4,7 +4,12 @@ on:
   push:
     tags:
       - '*'
-  workflow_dispatch: # Allows manual triggering
+  workflow_dispatch:
+    inputs:
+      tag:
+        description: 'Enter the tag to release'
+        required: true
+        default: 'v1.0.0' # You can set a default if you like
 
 jobs:
   zip-and-release:
@@ -19,21 +24,12 @@ jobs:
           git config --global user.name "github-actions"
           git config --global user.email "github-actions@github.com"
 
-      - name: Get the latest tag
+      - name: Get the tag from workflow input
         id: get_tag
         run: |
-          # Fetch tags from remote to ensure we get the latest pushed tag
-          git fetch --tags
-          
-          # Get the most recent tag based on lexicographical order
-          TAG=$(git tag -l | sort -V | tail -n 1)
-          
-          # If no tags found, fallback to a default tag
-          if [ -z "$TAG" ]; then
-            TAG="v0.0.0"
-          fi
-
-          echo "Using latest tag: $TAG"
+          # The tag will either come from the input (manual trigger) or from the git tag (auto trigger)
+          TAG=${{ github.event.inputs.tag || 'v1.0.0' }}
+          echo "Using specified tag: $TAG"
           echo "TAG=$TAG" >> $GITHUB_ENV
 
       - name: Zip the repository
@@ -43,7 +39,7 @@ jobs:
       - name: Create a release if it doesn't exist
         id: create_release
         run: |
-          # Check if a release exists for the latest tag
+          # Check if a release exists for the provided tag
           RELEASE_EXISTS=$(gh release view $TAG --json tagName --jq ".tagName" || echo "false")
           if [ "$RELEASE_EXISTS" == "false" ]; then
             echo "Creating release for tag: $TAG"
