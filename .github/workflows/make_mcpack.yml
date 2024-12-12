@@ -36,4 +36,4 @@ jobs:
       env:
         GH_TOKEN: ${{ GITHUB.TOKEN }}
       run: |
-        gh release create ${{ env.version }} oreui-utilities.zip.mcpack --title "For ${{ env.version }} ONLY" --notes "Pack icon and code by @Stivusik ($(TZ='Asia/Dhaka' date +'%Y%M%d'))" --latest
+        gh release create ${{ env.version }} oreui-utilities.zip.mcpack --title "For ${{ env.version }} ONLY" --notes "Pack icon and code by @Stivusik ($(TZ='Asia/Dhaka' date +'%Y%m%d'))" --latest
