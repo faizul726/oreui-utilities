@@ -1,12 +1,12 @@
-name: Create MCPACK and Release on Push
+name: Create MCPACK and release
 
 on:
   push:
     branches:
       - main
-    paths-ignore:
-      - ".github/**"
-      - ".gitignore"
+    #paths-ignore:
+      #- ".github/**"
+      #- ".gitignore"
 
 jobs:
   create-release:
@@ -20,7 +20,7 @@ jobs:
     - name: Extract version from commit message
       id: extract-version
       run: |
-        version=$(echo "${{ github.event.head_commit.message }}" | sed -n 's/^Release \(v[0-9]*\.[0-9]*\.[0-9]*\).*$/\1/p')
+        version=$(echo "${{ github.event.head_commit.message }}" | sed -n 's/^Release for \(v[0-9]*\.[0-9]*\.[0-9]*\).*$/\1/p')
         echo "version=$version" >> $GITHUB_ENV
 
     - name: Create tag
@@ -34,6 +34,6 @@ jobs:
 
     - name: Upload to release
       env:
-        GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        GH_TOKEN: ${{ GITHUB.TOKEN }}
       run: |
         gh release create ${{ env.version }} oreui-utilities.zip.mcpack --title "For ${{ env.version }} ONLY" --notes "Pack icon and code by @Stivusik ($(TZ='Asia/Dhaka' date +'%Y%M%d'))" --latest
