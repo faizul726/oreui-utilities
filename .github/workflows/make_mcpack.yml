@@ -1,0 +1,39 @@
+name: Create MCPACK and Release on Push
+
+on:
+  push:
+    branches:
+      - main
+    paths-ignore:
+      - ".github/**"
+      - ".gitignore"
+
+jobs:
+  create-release:
+    if: startsWith(github.event.head_commit.message, 'Release for')
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v4
+
+    - name: Extract version from commit message
+      id: extract-version
+      run: |
+        version=$(echo "${{ github.event.head_commit.message }}" | sed -n 's/^Release \(v[0-9]*\.[0-9]*\.[0-9]*\).*$/\1/p')
+        echo "version=$version" >> $GITHUB_ENV
+
+    - name: Create tag
+      run: |
+        git tag ${{ env.version }}
+        git push origin ${{ env.version }}
+
+    - name: Make ZIP for MCPACK
+      run: |
+        zip -r oreui-utilities.zip.mcpack * -x "*.git*" ".github/*" ".gitignore"
+
+    - name: Upload to release
+      env:
+        GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      run: |
+        gh release create ${{ env.version }} oreui-utilities.zip.mcpack --title "For ${{ env.version:1 }} ONLY" --notes "Pack icon and code by @Stivusik ($(TZ='Asia/Dhaka' date +'%Y%M%d'))" --latest
