@@ -30,7 +30,7 @@ jobs:
 
     - name: Make ZIP for MCPACK
       run: |
-        zip -r oreui-utilities.zip.mcpack * -x "*.git*" ".github/*" ".gitignore"
+        zip -r oreui-utilities.zip.mcpack * -x "*.git*" ".github/*" ".gitignore" "last_sha256.txt"
 
     - name: Upload to release
       env:
