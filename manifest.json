@@ -1,17 +1,17 @@
 {
   "format_version": 2,
   "header": {
-    "name": "OreUI Utilities for v1.21.62+",
+    "name": "OreUI Utilities for v1.21.70+",
     "description": "§cOnly works with MBL2/Draco patched Minecraft!§r\nUnhides various elements of OreUI\nMade possible thanks to @stivusik.\n§bmcpedl.com/user/faizul726§r\nBorn on 20241109",
     "uuid": "e6475b4f-7b33-026f-b383-996b06d0e943",
-    "version": [ 1, 21, 62 ],
-    "min_engine_version": [ 1, 21, 62 ]
+    "version": [ 1, 21, 70 ],
+    "min_engine_version": [ 1, 21, 70 ]
   },
   "modules": [
     {
       "type": "resources",
       "uuid": "123a1a96-2fc7-2777-3ebd-83afb3ab2c48",
-      "version": [ 1, 21, 62 ]
+      "version": [ 1, 21, 70 ]
     }
   ]
 }
