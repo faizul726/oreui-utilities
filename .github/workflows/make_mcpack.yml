@@ -30,10 +30,10 @@ jobs:
 
     - name: Make ZIP for MCPACK
       run: |
-        zip -r oreui-utilities.zip.mcpack * -x "*.git*" ".github/*" ".gitignore" "last_sha256.txt"
+        zip -r oreui-utilities.zip.mcpack * -x "*.git*" ".github/*" ".gitignore" "last_sha256.txt" "README.md"
 
     - name: Upload to release
       env:
         GH_TOKEN: ${{ GITHUB.TOKEN }}
       run: |
-        gh release create ${{ env.version }} oreui-utilities.zip.mcpack --title "For ${{ env.version }} ONLY" --notes "Pack icon and code by @Stivusik ($(TZ='Asia/Dhaka' date +'%Y%m%d'))" --latest
+        gh release create ${{ env.version }} oreui-utilities.zip.mcpack --title "For ${{ env.version }} ONLY" --notes "Made by @Stivusik and @Hamsteroonie ($(TZ='Asia/Dhaka' date +'%Y%m%d') +06)" --latest
