@@ -36,4 +36,34 @@ jobs:
       env:
         GH_TOKEN: ${{ GITHUB.TOKEN }}
       run: |
-        gh release create ${{ env.version }} oreui-utilities.zip.mcpack --title "For ${{ env.version }} ONLY" --notes "Made by @Stivusik and @Hamsteroonie ($(TZ='Asia/Dhaka' date +'%Y%m%d') +06)" --latest
+        cat  <<EOF > release-notes.md
+        Made by @Stivusik and @Hamsteroonie ($(TZ='Asia/Dhaka' date +'%Y%m%d_%H%M') +06)
+        > [!WARNING] 
+        > **ONLY WORKS with MBL2/Draco Patched Minecraft and [MB Loader](https://play.google.com/store/apps/details?id=io.bambosan.mbloader).**  
+        > Download is below **Assets**
+
+        ### What's new?
+        * Added The End default spawn (PR #1)
+        * Added Old and Void world type (PR #1)
+
+        ### Known issues:
+        * Only en_US text for Old world type is added. Other languages will show placeholder text. Will add new languages in next update.
+
+        <details> 
+        <summary><h3>Screenshots</h3></summary>
+
+        <img src="https://github.com/user-attachments/assets/5d3f2237-d9fd-46dd-ac95-ab498dd77d2d" alt="Screenshot_20250325-234031_MB Loader">
+        </br>
+        <img src="https://github.com/user-attachments/assets/bc2bebc0-c6a5-4f4c-af5a-0b5841093660" alt="Screenshot_20250325-234102_MB Loader">
+        </br>
+        <img src="https://github.com/user-attachments/assets/830e9183-8dd0-4775-9254-7d4248ca6683" alt="ResizedImage_2025-03-25_23-49-19_1106">
+        </br>
+        <img src="https://github.com/user-attachments/assets/a1b65d02-2601-4416-a815-443d6a36fa69" alt="image">
+        </br>
+        </details>
+        EOF
+
+        gh release create ${{ env.version }} oreui-utilities.zip.mcpack \
+        --title "For ${{ env.version }} ONLY" \
+        --notes-file "release-notes.md" \
+        --latest
