@@ -7,6 +7,7 @@ on:
     paths-ignore:
       - ".github/**"
       - ".gitignore"
+  workflow_dispatch:
 
 jobs:
   create-release:
@@ -30,27 +31,28 @@ jobs:
 
     - name: Make ZIP for MCPACK
       run: |
-        zip -r oreui-utilities.zip.mcpack * -x "*.git*" ".github/*" ".gitignore" "last_sha256.txt" "README.md"
+        cp CREDITS.txt src
+        pushd src
+        zip -r "../oreui-utilities.zip.mcpack" * -x "*.git*" ".github/*" ".gitignore" "last_sha256.txt" "README.md"
+        popd
 
     - name: Upload to release
       env:
         GH_TOKEN: ${{ GITHUB.TOKEN }}
       run: |
         cat  <<EOF > release-notes.md
-        Made by @Stivusik and @Hamsteroonie ($(TZ='Asia/Dhaka' date +'%Y%m%d_%H%M') +06)
+        ![Hits](https://hits.sh/github.com/faizul726/oreui-utilities.svg?label=Views&logo=github)  
+        Made by @Stivusik, @Andexter8 and @Hamsteroonie ($(TZ='Asia/Dhaka' date +'%Y%m%d_%H%M') +06)
         > [!WARNING] 
         > **ONLY WORKS with MBL2/Draco Patched Minecraft and [MB Loader](https://play.google.com/store/apps/details?id=io.bambosan.mbloader).**  
-        > Download is below **Assets**
-
-        ### What's new?
-        * Added The End default spawn (PR #1)
-        * Added Old and Void world type (PR #1)
+        > I haven't tested it myself.  
+        > Download is below **Assets**.
 
         ### Known issues:
-        * Only en_US text for Old world type is added. Other languages will show placeholder text. Will add new languages in next update.
+        * Only en_US text for Old world type is added. Other languages will show placeholder text. I will not add other languages anytime soon.
 
         <details> 
-        <summary><h3>Screenshots</h3></summary>
+        <summary><h3>Screenshots (click to expand)</h3></summary>
 
         <img src="https://github.com/user-attachments/assets/5d3f2237-d9fd-46dd-ac95-ab498dd77d2d" alt="Screenshot_20250325-234031_MB Loader">
         </br>
