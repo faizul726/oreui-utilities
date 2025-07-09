@@ -1,0 +1,7 @@
+# Localization by Zihao_il
+
+hbui.CreateNewWorld.advanced.legacyWorldGeneratorLabel=旧世界
+hbui.CreateNewWorld.advanced.legacyWorldGeneratorDescription=256x有限世界
+hbui.WorldTag.spectator=观众
+hbui.CreateNewWorld.general.gameModeSpectatorLabel=观众
+hbui.CreateNewWorld.general.gameModeSpectatorDescription=旁观模式允许你自由飞行并观察世界，但无法以任何方式与之互动。

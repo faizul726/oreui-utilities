@@ -1,0 +1,5 @@
+hbui.CreateNewWorld.advanced.legacyWorldGeneratorLabel=Régi világ
+hbui.CreateNewWorld.advanced.legacyWorldGeneratorDescription=A világ 256 x 256 blokkból áll.
+hbui.WorldTag.spectator=Néző
+hbui.CreateNewWorld.general.gameModeSpectatorLabel=Néző
+hbui.CreateNewWorld.general.gameModeSpectatorDescription=A nézői mód lehetővé teszi, hogy körberepüld és megfigyeld a világot anélkül, hogy bármilyen módon kapcsolatba lépnél vele.

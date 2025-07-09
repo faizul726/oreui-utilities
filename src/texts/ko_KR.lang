@@ -1,2 +1,10 @@
+# Localization by @hajs110208
+
 hbui.CreateNewWorld.advanced.legacyWorldGeneratorLabel=올드맵
 hbui.CreateNewWorld.advanced.legacyWorldGeneratorDescription=256x256 크기의 월드
+
+hbui.WorldTag.spectator=관전자
+hbui.CreateNewWorld.general.gameModeSpectatorLabel=관전자
+hbui.CreateNewWorld.general.gameModeSpectatorDescription=관전자 모드를 사용하면 월드와 상호작용하지 않고 비행하며 월드를 관찰할 수 있습니다.
+
+# Native translator check needed

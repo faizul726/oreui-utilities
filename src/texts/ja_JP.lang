@@ -1,0 +1,5 @@
+hbui.CreateNewWorld.advanced.legacyWorldGeneratorLabel=旧世界
+hbui.CreateNewWorld.advanced.legacyWorldGeneratorDescription=世界は256×256のブロック
+hbui.WorldTag.spectator=スペクテイター
+hbui.CreateNewWorld.general.gameModeSpectatorLabel=スペクテイター
+hbui.CreateNewWorld.general.gameModeSpectatorDescription=観戦モードでは、世界と一切関わりを持つことなく、飛び回り、世界を観察することができる。

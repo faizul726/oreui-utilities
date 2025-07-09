@@ -1,0 +1,5 @@
+hbui.CreateNewWorld.advanced.legacyWorldGeneratorLabel=Alte Welt
+hbui.CreateNewWorld.advanced.legacyWorldGeneratorDescription=Die Welt besteht aus 256 mal 256 Blöcken.
+hbui.WorldTag.spectator=Zuschauer
+hbui.CreateNewWorld.general.gameModeSpectatorLabel=Zuschauer
+hbui.CreateNewWorld.general.gameModeSpectatorDescription=Im Zuschauermodus können Sie herumfliegen und die Welt beobachten, ohne in irgendeiner Weise mit ihr zu interagieren.

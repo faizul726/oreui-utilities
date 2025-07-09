@@ -1,0 +1,5 @@
+hbui.CreateNewWorld.advanced.legacyWorldGeneratorLabel=Παλιό κόσμος
+hbui.CreateNewWorld.advanced.legacyWorldGeneratorDescription=Ο κόσμος είναι 256 επί 256 μπλοκ.
+hbui.WorldTag.spectator=Θεατής
+hbui.CreateNewWorld.general.gameModeSpectatorLabel=Θεατής
+hbui.CreateNewWorld.general.gameModeSpectatorDescription=Η λειτουργία θεατή σας επιτρέπει να πετάτε και να παρατηρείτε τον κόσμο χωρίς να αλληλεπιδράτε με αυτόν με οποιονδήποτε τρόπο.

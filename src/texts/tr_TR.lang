@@ -1,0 +1,5 @@
+hbui.CreateNewWorld.advanced.legacyWorldGeneratorLabel=Eski dünya
+hbui.CreateNewWorld.advanced.legacyWorldGeneratorDescription=Dünya 256'ya 256 bloktur
+hbui.WorldTag.spectator=İzleyici
+hbui.CreateNewWorld.general.gameModeSpectatorLabel=İzleyici
+hbui.CreateNewWorld.general.gameModeSpectatorDescription=İzleyici modu, herhangi bir şekilde etkileşime girmeden etrafta uçmanıza ve dünyayı gözlemlemenize olanak tanır

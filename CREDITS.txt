@@ -1,16 +1,22 @@
-# Contributors of OreUI Utilities texture pack
+# Contributors of OreUI Utilities resource pack for Minecraft Bedrock edition
 
 > SOURCE: https://github.com/faizul726/oreui-utilities
 > DO NOT REDISTRIBUTE OR MIRROR ANYWHERE ELSE!
 
-**Stivusik**  
+**Stivusik (Debug tab, export world button)**  
 https://github.com/Stivusik  
 
-**Andexter8**  
+**Andexter8 (Spectator mode)**  
 https://github.com/Andexter8  
 
-**Hamsteroonie**  
+**Hamsteroonie (Old world type)**  
 https://github.com/Hamsteroonie  
 
-**Murgi**
+**hajs110208 (ko_KR localization)**  
+https://github.com/hajs110208
+
+**Zihao_il (zh_CN localization)**  
+https://bbk.endyun.ltd
+
+**Murgi (Packaging, maintenance)**
 https://github.com/faizul726  

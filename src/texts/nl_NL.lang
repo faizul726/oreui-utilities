@@ -1,0 +1,5 @@
+hbui.CreateNewWorld.advanced.legacyWorldGeneratorLabel=Oude wereld
+hbui.CreateNewWorld.advanced.legacyWorldGeneratorDescription=De wereld is 256 bij 256 blokken.
+hbui.WorldTag.spectator=Toeschouwer
+hbui.CreateNewWorld.general.gameModeSpectatorLabel=Toeschouwer
+hbui.CreateNewWorld.general.gameModeSpectatorDescription=Toeschouwersmodus stelt je in staat om rond te vliegen en de wereld te bekijken zonder er op enige manier mee te interacteren.

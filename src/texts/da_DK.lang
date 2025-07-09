@@ -1,0 +1,5 @@
+hbui.CreateNewWorld.advanced.legacyWorldGeneratorLabel=Gammel Verden
+hbui.CreateNewWorld.advanced.legacyWorldGeneratorDescription=Verden er 256 gange 256 blokke.
+hbui.WorldTag.spectator=Tilskuer
+hbui.CreateNewWorld.general.gameModeSpectatorLabel=Tilskuer
+hbui.CreateNewWorld.general.gameModeSpectatorDescription=Tilskuertilstand giver dig mulighed for at flyve rundt og observere verden uden at interagere med den på nogen måde.

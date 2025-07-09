@@ -1,5 +1,5 @@
 hbui.CreateNewWorld.advanced.legacyWorldGeneratorLabel=Old world
-hbui.CreateNewWorld.advanced.legacyWorldGeneratorDescription=Good old 256x256 world. Made possible thanks to @Hamsteroonie
+hbui.CreateNewWorld.advanced.legacyWorldGeneratorDescription=The world is 256 by 256 blocks.
 hbui.WorldTag.spectator=Spectator
 hbui.CreateNewWorld.general.gameModeSpectatorLabel=Spectator
 hbui.CreateNewWorld.general.gameModeSpectatorDescription=Spectator mode allows you to fly around and observe the world without interacting with it in any way.

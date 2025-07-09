@@ -1,0 +1,5 @@
+hbui.CreateNewWorld.advanced.legacyWorldGeneratorLabel=Gamla världen
+hbui.CreateNewWorld.advanced.legacyWorldGeneratorDescription=Världen är 256 gånger 256 block
+hbui.WorldTag.spectator=Åskådare
+hbui.CreateNewWorld.general.gameModeSpectatorLabel=Åskådare
+hbui.CreateNewWorld.general.gameModeSpectatorDescription=I åskådarläget kan du flyga runt och observera världen utan att interagera med den på något sätt

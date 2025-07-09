@@ -1,0 +1,5 @@
+hbui.CreateNewWorld.advanced.legacyWorldGeneratorLabel=Mundo antiguo
+hbui.CreateNewWorld.advanced.legacyWorldGeneratorDescription=El mundo tiene 256 por 256 bloques.
+hbui.WorldTag.spectator=Espectador
+hbui.CreateNewWorld.general.gameModeSpectatorLabel=Espectador
+hbui.CreateNewWorld.general.gameModeSpectatorDescription=El modo espectador te permite volar y observar el mundo sin interactuar con él de ninguna manera.

@@ -20,8 +20,9 @@
 > - [MB Loader](https://play.google.com/store/apps/details?id=io.bambosan.mbloader) is also supported.
 
 ### 📥️ Downloads
-`Last updated: June 20, 2025`
-* [For v1.21.90 - v1.21.92](https://github.com/faizul726/oreui-utilities/releases/tag/v1.21.90) (it may work on newer versions not mentioned here)
+`Last updated: July 09, 2025`
+* [For v1.21.93](https://github.com/faizul726/oreui-utilities/releases/tag/v1.21.93) (it may work on newer versions not mentioned here)
+* [For v1.21.90 - v1.21.92](https://github.com/faizul726/oreui-utilities/releases/tag/v1.21.90)
 * [For v1.21.80 - v1.21.82](https://github.com/faizul726/oreui-utilities/releases/tag/v1.21.80)
 * [For v1.21.72 - v1.21.73](https://github.com/faizul726/oreui-utilities/releases/tag/v1.21.72)
 * [For v1.21.70 - v1.21.71](https://github.com/faizul726/oreui-utilities/releases/tag/v1.21.70)

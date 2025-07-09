@@ -1,0 +1,5 @@
+hbui.CreateNewWorld.advanced.legacyWorldGeneratorLabel=Den gamle verden
+hbui.CreateNewWorld.advanced.legacyWorldGeneratorDescription=Verden består av 256 ganger 256 blokker
+hbui.WorldTag.spectator=Tilskuer
+hbui.CreateNewWorld.general.gameModeSpectatorLabel=Tilskuer
+hbui.CreateNewWorld.general.gameModeSpectatorDescription=I tilskuermodus kan du fly rundt og observere verden uten å interagere med den på noen måte

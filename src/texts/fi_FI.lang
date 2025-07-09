@@ -1,0 +1,5 @@
+hbui.CreateNewWorld.advanced.legacyWorldGeneratorLabel=Vanha maailma
+hbui.CreateNewWorld.advanced.legacyWorldGeneratorDescription=Maailma on 256 x 256 lohkoa.
+hbui.WorldTag.spectator=Katsoja
+hbui.CreateNewWorld.general.gameModeSpectatorLabel=Katsoja
+hbui.CreateNewWorld.general.gameModeSpectatorDescription=Katsojatilan avulla voit lentää ympäriinsä ja tarkkailla maailmaa olematta vuorovaikutuksessa sen kanssa millään tavalla

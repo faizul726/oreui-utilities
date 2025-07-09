@@ -1,0 +1,5 @@
+hbui.CreateNewWorld.advanced.legacyWorldGeneratorLabel=Starý svet
+hbui.CreateNewWorld.advanced.legacyWorldGeneratorDescription=Svet má 256 na 256 blokov.
+hbui.WorldTag.spectator=Divák
+hbui.CreateNewWorld.general.gameModeSpectatorLabel=Divák
+hbui.CreateNewWorld.general.gameModeSpectatorDescription=Režim diváka vám umožňuje lietať a pozorovať svet bez toho, aby ste s ním akokoľvek interagovali.

@@ -1,0 +1,5 @@
+hbui.CreateNewWorld.advanced.legacyWorldGeneratorLabel=Stary świat
+hbui.CreateNewWorld.advanced.legacyWorldGeneratorDescription=Świat składa się z 256 na 256 bloków
+hbui.WorldTag.spectator=Widz
+hbui.CreateNewWorld.general.gameModeSpectatorLabel=Widz
+hbui.CreateNewWorld.general.gameModeSpectatorDescription=Tryb widza pozwala latać i obserwować świat bez wchodzenia z nim w jakąkolwiek interakcję.

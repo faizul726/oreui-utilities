@@ -42,14 +42,11 @@ jobs:
       run: |
         cat  <<EOF > release-notes.md
         ![Hits](https://hits.sh/github.com/faizul726/oreui-utilities.svg?label=Views&logo=github)  
-        Made by @Stivusik, @Andexter8 and @Hamsteroonie ($(TZ='Asia/Dhaka' date +'%Y%m%d_%H%M') +06)
+        Made by @Stivusik, @Hamsteroonie, @Andexter8 ($(TZ='Asia/Dhaka' date +'%Y%m%d_%H%M') +06)
         > [!WARNING] 
         > **ONLY WORKS with MBL2/Draco Patched Minecraft and [MB Loader](https://play.google.com/store/apps/details?id=io.bambosan.mbloader).**  
         > I haven't tested it myself.  
         > Download is below **Assets**.
-
-        ### Known issues:
-        * Only en_US text for Old world type is added. Other languages will show placeholder text. I will not add other languages anytime soon.
 
         <details> 
         <summary><h3>Screenshots (click to expand)</h3></summary>

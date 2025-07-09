@@ -1,0 +1,5 @@
+hbui.CreateNewWorld.advanced.legacyWorldGeneratorLabel=Старый мир
+hbui.CreateNewWorld.advanced.legacyWorldGeneratorDescription=Мир размером 256 на 256 блоков
+hbui.WorldTag.spectator=Наблюдатель
+hbui.CreateNewWorld.general.gameModeSpectatorLabel=Наблюдатель
+hbui.CreateNewWorld.general.gameModeSpectatorDescription=Режим наблюдателя позволяет вам летать и смотреть за миром, не взаймодействуя с ним каким-либо образом

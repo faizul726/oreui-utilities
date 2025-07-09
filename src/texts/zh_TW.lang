@@ -1,0 +1,5 @@
+hbui.CreateNewWorld.advanced.legacyWorldGeneratorLabel=舊世界
+hbui.CreateNewWorld.advanced.legacyWorldGeneratorDescription=256x有限世界
+hbui.WorldTag.spectator=觀眾
+hbui.CreateNewWorld.general.gameModeSpectatorLabel=觀眾模式
+hbui.CreateNewWorld.general.gameModeSpectatorDescription=旁觀模式允許你自由飛行並觀察世界，但無法以任何方式與之互動。

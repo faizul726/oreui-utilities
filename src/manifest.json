@@ -1,17 +1,27 @@
 {
   "format_version": 2,
   "header": {
-    "name": "OreUI Utilities for v1.21.90+",
-    "description": "Only works with MBL2/Draco patched Minecraft and MB Loader!\nUnhides various elements of OreUI\nMade possible thanks to @Stivusik, @Andexter8 and @Hamsteroonie.\nfaizul726.github.io/oreui-utilities§r\nBorn on 20241109",
+    "name": "OreUI Utilities for v1.21.93+",
+    "description": "Only works with MBL2/Draco patched Minecraft and MB Loader!\nUnhides various elements of OreUI\n\nCredits: Debug tab & export world button by @Stivusik\nOld world type by @Hamsteroonie\nSpectator mode by 8Crafter (@Andexter8)\n\nLocalizations:\nko_KR: @hajs110208\nzh_CN: Zihao_il.\nfaizul726.github.io/oreui-utilities\nBorn on 20241109",
     "uuid": "e6475b4f-7b33-026f-b383-996b06d0e943",
-    "version": [ 1, 21, 90 ],
-    "min_engine_version": [ 1, 21, 90 ]
+    "version": [ 1, 21, 93 ],
+    "min_engine_version": [ 1, 21, 93 ]
   },
   "modules": [
     {
       "type": "resources",
       "uuid": "123a1a96-2fc7-2777-3ebd-83afb3ab2c48",
-      "version": [ 1, 21, 90 ]
+      "version": [ 1, 21, 93 ]
     }
-  ]
+  ],
+  "metadata": {
+    "authors": [
+      "@Stivusik",
+      "@Hamsteroonie",
+      "8Crafter (@Andexter8)",
+      "@hajs110208",
+      "Zihao_il"
+    ],
+    "url": "faizul726.github.io/oreui-utilities"
+  }
 }
