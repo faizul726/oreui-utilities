@@ -1,0 +1,27 @@
+name: Check compatibility
+
+on:
+  workflow_dispatch:
+    
+
+inputs:
+  downloadlink:
+    description: 'APPX download link'
+    required: true
+    type: string
+  gameversion:
+    description: 'Game version'
+    required: true
+    type: string
+    default: 'v1.'
+
+jobs:
+  check-compatibility:
+    runs-on: windows-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Check compatibility
+        run: cmd /c CheckCompatibility.bat "${{ github.event.inputs.downloadlink }}" "${{ github.event.inputs.gameversion }}"
