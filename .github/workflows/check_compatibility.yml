@@ -2,18 +2,16 @@ name: Check compatibility
 
 on:
   workflow_dispatch:
-    
-
-inputs:
-  downloadlink:
-    description: 'APPX download link'
-    required: true
-    type: string
-  gameversion:
-    description: 'Game version'
-    required: true
-    type: string
-    default: 'v1.'
+    inputs:
+      downloadlink:
+        description: 'APPX download link'
+        required: true
+        type: string
+      gameversion:
+        description: 'Game version'
+        required: true
+        type: string
+        default: 'v1.'
 
 jobs:
   check-compatibility:
