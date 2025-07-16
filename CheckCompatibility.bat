@@ -19,7 +19,5 @@ if exist "tmp\data\gui\dist\hbui\%currentFileName%" (
 ) else (
     echo Incompatible with %2
     >tmp\compatibility-status.json echo {"schemaVersion":1,"label":"%2","message":"Not supported, needs update","color":"red"}
-    set exitCode=6
+    exit /b 6
 )
-
-exit %exitCode%
