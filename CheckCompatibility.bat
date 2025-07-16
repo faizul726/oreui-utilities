@@ -2,6 +2,7 @@
 setlocal
 
 mkdir tmp
+git fetch origin
 git worktree add tmp gh-pages
 
 echo Looking for json file...
