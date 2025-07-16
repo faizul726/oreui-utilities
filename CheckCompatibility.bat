@@ -7,14 +7,14 @@ git worktree add tmp gh-pages
 
 echo Looking for js file...
 tree /f /a
-for %%F in ("src\hbui\*.js") do (
+for %%F in ("src\hbui\*") do (
     echo Found %%~nxF
     set "currentFileName=%%~nxF"
 )
 
 echo Downloading appx...
-echo curl -L %1 -o mcappx.zip
-curl -L %1 -o mcappx.zip
+echo curl -L "%~1" -o mcappx.zip
+curl -L "%~1" -o mcappx.zip
 
 echo Extracting appx...
 7z x mcappx.zip -otmp
