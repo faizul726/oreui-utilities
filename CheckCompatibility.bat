@@ -17,4 +17,5 @@ if exist "tmp\data\gui\dist\hbui\%currentFileName%" (
 ) else (
     echo Incompatible with %1
     >tmp\compatibility-status.json echo {"schemaVersion":1,"label":"%1","message":"Not supported, needs update","color":"red"}
+    echo ntg>failure
 )

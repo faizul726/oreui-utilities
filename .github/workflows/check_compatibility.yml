@@ -1,4 +1,5 @@
-name: Check compatibility
+name: 'Check compatibility'
+run-name: 'Check compatibility: ${{ inputs.gameversion }}'
 
 on:
   workflow_dispatch:
@@ -36,3 +37,4 @@ jobs:
           git add tmp\compatibility-status.json
           git commit -m "Compatibility check"
           git push origin gh-pages
+          if (Test-Path "failure") { exit 1 }
