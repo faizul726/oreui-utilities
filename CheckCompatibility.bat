@@ -12,10 +12,6 @@ for %%F in ("src\hbui\*") do (
     set "currentFileName=%%~nxF"
 )
 
-echo Downloading appx...
-echo curl -L "%~1" -o mcappx.zip
-curl -L "%~1" -o mcappx.zip
-
 echo Extracting appx...
 7z x mcappx.zip -otmp
 
