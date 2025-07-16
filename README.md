@@ -3,7 +3,7 @@
   <h1>OreUI Utilities</h1>
   <p>✨ Made by <a href="https://github.com/Stivusik">@Stivusik</a>, <a href="https://github.com/Andexter8">@Andexter8</a> and <a href="https://github.com/Hamsteroonie">@Hamsteroonie</a></p>
   <a href="https://github.com/faizul726/oreui-utilities/releases">
-  <a href="https://hits.sh/github.com/faizul726/oreui-utilities/"><img alt="Hits" src="https://hits.sh/github.com/faizul726/oreui-utilities.svg?label=Views&logo=github"/></a>ㅤ<img src="https://img.shields.io/github/downloads/faizul726/oreui-utilities/total.svg?label=Downloads&color=purple" alt="Downloads">  <img alt="Compatibility status" src="https://img.shields.io/endpoint?url=https%3A%2F%2Fraw.githubusercontent.com%2Ffaizul726%2Foreui-utilities%2Fgh-pages%2Fcompatibility-status.json">
+  <a href="https://hits.sh/github.com/faizul726/oreui-utilities/"><img alt="Hits" src="https://hits.sh/github.com/faizul726/oreui-utilities.svg?label=Views&logo=github"/></a>ㅤ<img src="https://img.shields.io/github/downloads/faizul726/oreui-utilities/total.svg?label=Downloads&color=purple" alt="Downloads">ㅤ<img alt="Compatibility status" src="https://img.shields.io/endpoint?url=https%3A%2F%2Fraw.githubusercontent.com%2Ffaizul726%2Foreui-utilities%2Fgh-pages%2Fcompatibility-status.json">
 </a>
 
 </div>

@@ -13,7 +13,7 @@ echo Extracting appx...
 echo Checking compatibility...
 if exist "tmp\data\gui\dist\hbui\%currentFileName%" (
     echo Compatible with %1
-    >tmp\compatibility-status.json echo {"schemaVersion":1,"label":"%1","message":"Supported","color":"green"}
+    >tmp\compatibility-status.json echo {"schemaVersion":1,"label":"%1","message":"Supported","color":"brightgreen"}
 ) else (
     echo Incompatible with %1
     >tmp\compatibility-status.json echo {"schemaVersion":1,"label":"%1","message":"Not supported, needs update","color":"red"}
