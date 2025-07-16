@@ -1,13 +1,9 @@
 @echo off
 setlocal
 
-mkdir tmp
-git fetch origin
-git worktree add tmp gh-pages
-
 echo Looking for js file...
 tree /f /a
-for %%F in ("src\hbui\*") do (
+for %%F in (src\hbui\*.js) do (
     echo Found %%~nxF
     set "currentFileName=%%~nxF"
 )
@@ -25,9 +21,5 @@ if exist "tmp\data\gui\dist\hbui\%currentFileName%" (
     >tmp\compatibility-status.json echo {"schemaVersion":1,"label":"%2","message":"Not supported, needs update","color":"red"}
     set exitCode=6
 )
-
-git add tmp\compatibility-status.json
-git commit -m "Compatibility check"
-git push origin gh-pages
 
 exit %exitCode%

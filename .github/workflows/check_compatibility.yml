@@ -23,5 +23,11 @@ jobs:
 
       - name: Check compatibility
         run: |
+          mkdir tmp
+          git fetch origin
+          git worktree add tmp gh-pages
           curl -L "${{ github.event.inputs.downloadlink }}" -o mcappx.zip
           cmd /c CheckCompatibility.bat "${{ github.event.inputs.downloadlink }}" "${{ github.event.inputs.gameversion }}"
+          git add tmp\compatibility-status.json
+          git commit -m "Compatibility check"
+          git push origin gh-pages
