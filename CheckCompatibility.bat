@@ -12,7 +12,7 @@ for %%F in ("src\hbui\*.json") do (
 )
 
 echo Downloading appx...
-curl -L %1 -o mcappx.zip
+curl -L "%1" -o mcappx.zip
 
 echo Extracting appx...
 7z x mcappx.zip -otmp
