@@ -34,7 +34,8 @@ jobs:
 
           cmd /c CheckCompatibility.bat "${{ github.event.inputs.gameversion }}"
           
-          git add tmp\compatibility-status.json
+          pushd tmp
+          git add compatibility-status.json
           git commit -m "Compatibility check"
           git push origin gh-pages
           if (Test-Path "failure") { exit 1 }
