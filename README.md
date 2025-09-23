@@ -18,6 +18,8 @@
 > - Make sure to download the correct `.mcpack` file for your Minecraft version. (it will be below assets)
 > - **Only MBL2 and Draco patched Minecraft supports this pack.**  
 > - [MB Loader](https://play.google.com/store/apps/details?id=io.bambosan.mbloader) is also supported.
+> - With release of 1.21.100, this project will receive less maintenance from now on.
+
 
 ### 📥️ Downloads
 `Last updated: September 23, 2025`
