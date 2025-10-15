@@ -8,6 +8,7 @@ for %%F in ("src\hbui\*.js") do (
 )
 
 echo Extracting appx...
+if not exist mcappx.zip (exit /b 1)
 7z x mcappx.zip -otmp
 
 echo Checking compatibility...
@@ -18,4 +19,5 @@ if exist "tmp\data\gui\dist\hbui\%currentFileName%" (
     echo Incompatible with %1
     >tmp\compatibility-status.json echo {"schemaVersion":1,"label":"%1","message":"Not supported, needs update","color":"red"}
     echo ntg>failure
+
 )
