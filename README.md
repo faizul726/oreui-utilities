@@ -23,7 +23,8 @@
 
 ### 📥️ Downloads
 `Last updated: September 23, 2025`
-* [For v1.21.100 - v1.21.101+](https://github.com/faizul726/oreui-utilities/releases/tag/v1.21.100) (this may work on newer versions not mentioned here)
+* [For v1.21.111](https://github.com/faizul726/oreui-utilities/releases/tag/v1.21.111) <!--(this may work on newer versions not mentioned here)-->
+* [For v1.21.100 - v1.21.101](https://github.com/faizul726/oreui-utilities/releases/tag/v1.21.100)
 * [For v1.21.93 - v1.21.94](https://github.com/faizul726/oreui-utilities/releases/tag/v1.21.93)
 * [For v1.21.90 - v1.21.92](https://github.com/faizul726/oreui-utilities/releases/tag/v1.21.90)
 * [For v1.21.80 - v1.21.82](https://github.com/faizul726/oreui-utilities/releases/tag/v1.21.80)
