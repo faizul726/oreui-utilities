@@ -1,4 +1,4 @@
-/*! For license information please see index-8a2f31aa55689efa7de5.js.LICENSE.txt */
+/*! For license information please see index-a570b1174d51113842f0.js.LICENSE.txt */
 (() => {
   var e = {
       83820: function (e, t, a) {
@@ -32705,90 +32705,91 @@
             placeholder: g = "",
             rows: E = 1,
             disableBlurOnDeselect: h,
-            onTab: b,
-            isNumber: v,
-            placeholderIcon: F,
-            showClearOptionWhenValueExists: y,
-            onClear: S,
-            hasShadow: M = !0,
-            role: C = "neutral80",
+            onClick: b,
+            onTab: v,
+            isNumber: F,
+            placeholderIcon: y,
+            showClearOptionWhenValueExists: S,
+            onClear: M,
+            hasShadow: C = !0,
+            role: w = "neutral80",
           } = e,
-          { t: w } = zi("BaseTextField"),
-          [k, T] = (0, l.useFacetState)(!1),
-          [P, I] = (0, l.useFacetState)(!1),
-          x = (0, l.useFacetWrap)(a),
-          A = (0, l.useFacetUnwrap)(n),
-          { narrateText: O, preventNarrateText: N } = gu(),
-          R = (0, l.useFacetWrap)(Pc()),
-          L = (0, r.useContext)(Bu),
-          _ = (0, l.useFacetWrap)(c),
-          D = (0, l.useFacetMap)(
+          { t: k } = zi("BaseTextField"),
+          [T, P] = (0, l.useFacetState)(!1),
+          [I, x] = (0, l.useFacetState)(!1),
+          A = (0, l.useFacetWrap)(a),
+          O = (0, l.useFacetUnwrap)(n),
+          { narrateText: N, preventNarrateText: R } = gu(),
+          L = (0, l.useFacetWrap)(Pc()),
+          _ = (0, r.useContext)(Bu),
+          D = (0, l.useFacetWrap)(c),
+          B = (0, l.useFacetMap)(
             (e) => (e ? "number" : "text"),
             [],
-            [(0, l.useFacetWrap)(v)],
+            [(0, l.useFacetWrap)(F)],
           ),
-          B = Uu("core.textfield.pointerAuto"),
-          W = Cr(C),
-          z = Pr(),
-          j = (0, r.useRef)(null),
+          W = Uu("core.textfield.pointerAuto"),
+          z = Cr(w),
+          j = Pr(),
           H = (0, r.useRef)(null),
-          V = (0, r.useRef)(!1),
-          G = (0, r.useRef)(!1);
+          V = (0, r.useRef)(null),
+          G = (0, r.useRef)(!1),
+          $ = (0, r.useRef)(!1);
         (0, l.useFacetEffect)(
           (e, t) => {
-            e && !V.current
-              ? ((V.current = !0),
-                O(`${w(".selected")} . ${w(".hint", [`${t}`])}`))
-              : e || (V.current = !1);
+            e && !G.current
+              ? ((G.current = !0),
+                N(`${k(".selected")} . ${k(".hint", [`${t}`])}`))
+              : e || (G.current = !1);
           },
-          [O, w],
-          [k, (0, l.useFacetWrap)(null != o ? o : "")],
+          [N, k],
+          [T, (0, l.useFacetWrap)(null != o ? o : "")],
         );
-        const $ = (0, r.useContext)(yi),
-          X = (0, r.useCallback)(
+        const X = (0, r.useContext)(yi),
+          K = (0, r.useCallback)(
             (e) => {
-              if (j.current && document.activeElement === j.current) {
-                const t = Vu(j.current.value, null != e ? e : L, w);
-                (N(),
-                  null != t && O(t),
-                  document.activeElement === j.current &&
+              if (H.current && document.activeElement === H.current) {
+                const t = Vu(H.current.value, null != e ? e : _, k);
+                (R(),
+                  null != t && N(t),
+                  document.activeElement === H.current &&
                     p &&
-                    p(j.current.value, null != e ? e : L));
+                    p(H.current.value, null != e ? e : _));
               }
             },
-            [p, L, O, w, N],
+            [p, _, N, k, R],
           );
         (0, l.useFacetEffect)(
           (e) => {
-            if (null == j.current) return;
-            const t = j.current.value !== e,
-              a = j.current.value.length > 0 && 0 === e.length;
-            (t || a) && (j.current.value = e);
+            if (null == H.current) return;
+            const t = H.current.value !== e,
+              a = H.current.value.length > 0 && 0 === e.length;
+            (t || a) && (H.current.value = e);
           },
+          [O],
           [A],
-          [x],
         );
-        const K = (0, r.useCallback)(() => {
-            j.current && document.activeElement === j.current && b && b();
-          }, [b]),
-          Y = (0, r.useCallback)(
-            (e) => {
-              (I(e), f && f(e), h || e || !j.current || j.current.blur());
-            },
-            [I, f, h],
-          ),
+        const Y = (0, r.useCallback)(() => {
+            H.current && document.activeElement === H.current && v && v();
+          }, [v]),
           q = (0, r.useCallback)(
             (e) => {
-              if (j.current) {
-                if ((T(!1), null != u)) {
+              (x(e), f && f(e), h || e || !H.current || H.current.blur());
+            },
+            [x, f, h],
+          ),
+          Q = (0, r.useCallback)(
+            (e) => {
+              if (H.current) {
+                if ((P(!1), null != u)) {
                   const e = (e = "") => {
-                    j.current &&
-                      ((j.current.value = e),
+                    H.current &&
+                      ((H.current.value = e),
                       null != p &&
                         p(
                           e,
-                          null != L
-                            ? L
+                          null != _
+                            ? _
                             : {
                                 addedChars: "",
                                 removedChars: "",
@@ -32797,91 +32798,91 @@
                               },
                         ));
                   };
-                  u(j.current.value, e);
+                  u(H.current.value, e);
                 }
-                Boolean(e) ? Y(!0) : Y(!1);
+                Boolean(e) ? q(!0) : q(!1);
               }
             },
-            [u, T, Y, p, L],
+            [u, P, q, p, _],
           ),
-          Q = (0, r.useCallback)(() => {
-            j.current &&
-              document.activeElement === j.current &&
-              (j.current.blur(), q(!0));
-          }, [q]),
           J = (0, r.useCallback)(() => {
-            j.current && document.activeElement === j.current && Q();
-          }, [Q]);
+            H.current &&
+              document.activeElement === H.current &&
+              (H.current.blur(), Q(!0));
+          }, [Q]),
+          Z = (0, r.useCallback)(() => {
+            H.current && document.activeElement === H.current && J();
+          }, [J]);
         (0, r.useEffect)(() => {
-          if (!$) return;
+          if (!X) return;
           const e = [
-            $.changedCB(X),
-            $.tabbedCB(K),
-            $.submittedCB(J),
-            $.dismissedCB(Q),
+            X.changedCB(K),
+            X.tabbedCB(Y),
+            X.submittedCB(Z),
+            X.dismissedCB(J),
           ];
           return () => {
             e.forEach((e) => e());
           };
-        }, [$, X, Q, K, J]);
-        const Z = (0, r.useCallback)(() => {
-            j.current && j.current.focus();
-          }, []),
-          ee = (0, l.useFacetMap)(
+        }, [X, K, J, Y, Z]);
+        const ee = (0, r.useCallback)(() => {
+            H.current && (H.current.focus(), null == b || b());
+          }, [b]),
+          te = (0, l.useFacetMap)(
             (e, t, a) => {
               const n = (t && t.focused) || e;
               return Ur()(
                 Wu.textField,
                 Wu.textFieldType,
-                W.border.interactive,
-                W.text.interactive,
-                W.caret.base,
+                z.border.interactive,
+                z.text.interactive,
+                z.caret.base,
                 a,
                 {
                   [Wu.textFieldBrowserOnly]: !1,
                   [Wu.textFieldFocused]: n,
                   [Jn.selected]: n,
-                  [Wu.disabled]: A,
+                  [Wu.disabled]: O,
                   [Wu.textFieldTextArea]: E > 1,
-                  [Wu.pointerAuto]: B,
+                  [Wu.pointerAuto]: W,
                 },
               );
             },
-            [A, E, W, B],
-            [k, R, _],
+            [O, E, z, W],
+            [T, L, D],
           ),
-          te = (0, l.useFacetMap)(
+          ae = (0, l.useFacetMap)(
             (e, t, a) => Ur()({ [es]: (a && a.focused) || (t && !e) }),
             [],
-            [k, P, R],
+            [T, I, L],
           ),
-          ae = (0, r.useCallback)(() => {
-            (T(!0), d && d(), Y(!0));
-          }, [d, T, Y]),
-          ne = (0, l.useFacetMap)(
-            (e) => ({ button: U.B, inputLegend: w(".deselect"), disabled: !e }),
-            [w],
+          ne = (0, r.useCallback)(() => {
+            (P(!0), d && d(), q(!0));
+          }, [d, P, q]),
+          re = (0, l.useFacetMap)(
+            (e) => ({ button: U.B, inputLegend: k(".deselect"), disabled: !e }),
             [k],
+            [T],
           ),
-          re = (0, l.useFacetMap)((e) => null != e && "" !== e, [], [x]),
-          le = (0, l.useFacetMap)(
+          le = (0, l.useFacetMap)((e) => null != e && "" !== e, [], [A]),
+          oe = (0, l.useFacetMap)(
             (e, t) => ((null != e && "" !== e) || t ? "none" : "flex"),
             [],
-            [x, k],
+            [A, T],
           ),
-          oe = r.createElement(
+          ce = r.createElement(
             "fast-div",
             {
               className: Ur()(
                 Wu.textFieldType,
                 Wu.textFieldPlaceholder,
-                W.text.interactive,
-                z.dimmest,
-                { [Wu.placeholderAdjustedWithIcon]: null != F },
+                z.text.interactive,
+                j.dimmest,
+                { [Wu.placeholderAdjustedWithIcon]: null != y },
               ),
-              style: { display: le },
+              style: { display: oe },
             },
-            null != F
+            null != y
               ? r.createElement(
                   "div",
                   { className: Wu.textFieldContentWrapper },
@@ -32890,70 +32891,70 @@
                 )
               : r.createElement(Jc, null, g),
           ),
-          ce =
+          ie =
             E > 1
               ? r.createElement("fast-textarea", {
-                  ref: j,
+                  ref: H,
                   rows: E,
-                  className: ee,
+                  className: te,
                   maxLength: i,
-                  onFocus: ae,
+                  onFocus: ne,
                   onBlur: () => {
-                    !1 === G.current && q(!1);
+                    !1 === $.current && Q(!1);
                   },
                 })
               : r.createElement("fast-input", {
-                  ref: j,
-                  type: D,
-                  className: ee,
+                  ref: H,
+                  type: B,
+                  className: te,
                   maxLength: i,
-                  onFocus: ae,
+                  onFocus: ne,
                   onBlur: () => {
-                    !1 === G.current && q(!1);
+                    !1 === $.current && Q(!1);
                   },
                 });
         return r.createElement(
           Ss,
-          { containerRef: H, shouldBindFocus: k },
+          { containerRef: V, shouldBindFocus: T },
           r.createElement(
             "div",
-            { className: Wu.textFieldWrapper, ref: H },
+            { className: Wu.textFieldWrapper, ref: V },
             r.createElement(Su, {
-              options: ne,
+              options: re,
               onClick: () => {
-                j.current &&
-                  document.activeElement === j.current &&
-                  (j.current.blur(), q(!0));
+                H.current &&
+                  document.activeElement === H.current &&
+                  (H.current.blur(), Q(!0));
               },
             }),
-            A !== l.NO_VALUE && A
+            O !== l.NO_VALUE && O
               ? r.createElement(
                   Kc,
                   {
                     className: Ur()(
                       Wu.textFieldWrapper,
-                      W.background.interactive,
-                      { [Wu.disabled]: A },
+                      z.background.interactive,
+                      { [Wu.disabled]: O },
                     ),
                     "data-testid": e["data-testid"],
                     key: "disabled",
                     narrationText: s,
                     inputLegend: !1,
                     disabled: !0,
-                    onFocusChanged: Y,
-                    onClick: Z,
+                    onFocusChanged: q,
+                    onClick: ee,
                     gamepadAlias: t,
                   },
                   r.createElement("div", {
-                    className: Ur()(M ? W.shadow.interactive : void 0, {
-                      [Wu.textFieldWrapperShadow]: M,
+                    className: Ur()(C ? z.shadow.interactive : void 0, {
+                      [Wu.textFieldWrapperShadow]: C,
                     }),
                   }),
-                  oe,
+                  ce,
                   r.createElement(
                     "fast-div",
-                    { className: ee },
-                    r.createElement(Jc, null, x),
+                    { className: te },
+                    r.createElement(Jc, null, A),
                   ),
                 )
               : r.createElement(
@@ -32962,40 +32963,40 @@
                     key: "enabled",
                     className: Ur()(
                       Wu.textFieldWrapper,
-                      W.background.base,
-                      W.background.disable,
+                      z.background.base,
+                      z.background.disable,
                     ),
                     "data-testid": e["data-testid"],
                     narrationText: s,
-                    inputLegend: w(".select"),
-                    onFocusChanged: Y,
-                    classNameFocused: te,
-                    onClick: Z,
+                    inputLegend: k(".select"),
+                    onFocusChanged: q,
+                    classNameFocused: ae,
+                    onClick: ee,
                     gamepadAlias: t,
                     onHoverChanged: m,
                     onPressChanged: (e) => {
-                      G.current = !!e;
+                      $.current = !!e;
                     },
                   },
                   r.createElement("div", {
-                    className: Ur()(M ? W.shadow.interactive : void 0, {
-                      [Wu.textFieldWrapperShadow]: M,
+                    className: Ur()(C ? z.shadow.interactive : void 0, {
+                      [Wu.textFieldWrapperShadow]: C,
                     }),
                   }),
-                  oe,
                   ce,
-                  r.createElement(Zi, { role: C }),
-                  y &&
+                  ie,
+                  r.createElement(Zi, { role: w }),
+                  S &&
                     r.createElement(
                       l.Mount,
-                      { when: re },
+                      { when: le },
                       r.createElement(
                         Kc,
                         {
                           className: Wu.textFieldClearInteractive,
                           narrationText: !1,
                           inputLegend: "",
-                          onClick: () => null != S && S(),
+                          onClick: () => null != M && M(),
                         },
                         r.createElement(Rs, null),
                       ),
@@ -110690,7 +110691,7 @@
                         onClick: m,
                       },
                     ];
-                if (e && !n) {
+                if (!e && !n) {
                   const e = {
                     text: t(".importWorld"),
                     variant: "secondary",
