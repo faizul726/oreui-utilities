@@ -6,8 +6,8 @@
 **Stivusik (Debug tab, export world button)**  
 https://github.com/Stivusik  
 
-**Andexter8 (Spectator mode)**  
-https://github.com/Andexter8  
+**8Crafter (Spectator mode)**  
+https://github.com/8Crafter  
 
 **Hamsteroonie (Old world type)**  
 https://github.com/Hamsteroonie  

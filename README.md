@@ -14,6 +14,11 @@
 
 </br>
 
+> [!NOTE]
+> I may soon stop maintaining OreUI Utilities in favor of [@8crafter](https://github.com/8Crafter)'s [OreUI Customizer](https://www.8crafter.com/utilities/ore-ui-customizer).  
+> Thanks everyone for all the support so far. It's been an honor serving you.
+
+</br>
 
 > [!NOTE]
 > OreUI Utilities for older Minecraft versions may not have all features as the latest version.
@@ -26,11 +31,12 @@
 
 
 ### 📥️ Downloads
-`Last updated: October 29, 2025`
+`Last updated: December 11, 2025`
 
 <!--(this may work on newer versions not mentioned here)-->
 
-* [For v1.21.120](https://github.com/faizul726/oreui-utilities/releases/tag/v1.21.120) (this may work on newer versions not mentioned here)
+* [For v1.21.130](https://github.com/faizul726/oreui-utilities/releases/tag/v1.21.130) (this may work on newer versions not mentioned here)
+* [For v1.21.120 - v1.21.124](https://github.com/faizul726/oreui-utilities/releases/tag/v1.21.120)
 * [For v1.21.113 - v1.21.114](https://github.com/faizul726/oreui-utilities/releases/tag/v1.21.113)
 * [For v1.21.111](https://github.com/faizul726/oreui-utilities/releases/tag/v1.21.111)
 * [For v1.21.100 - v1.21.101](https://github.com/faizul726/oreui-utilities/releases/tag/v1.21.100)

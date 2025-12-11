@@ -42,7 +42,7 @@ jobs:
       run: |
         cat  <<EOF > release-notes.md
         ![Hits](https://hits.sh/github.com/faizul726/oreui-utilities.svg?label=Views&logo=github)  
-        Made by @Stivusik, @Hamsteroonie, @Andexter8 ($(TZ='Asia/Dhaka' date +'%Y%m%d_%H%M') +06)
+        Made by @Stivusik, @Hamsteroonie, @8Crafter ($(TZ='Asia/Dhaka' date +'%Y%m%d_%H%M') +06)
         > [!WARNING] 
         > - **ONLY WORKS with MBL2/Draco Patched Minecraft and [MB Loader](https://play.google.com/store/apps/details?id=io.bambosan.mbloader).**  
         > - I haven't tested it myself.  
